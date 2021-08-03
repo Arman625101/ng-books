@@ -7,8 +7,13 @@ import { DataService } from '../data.service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  books = this.dataService.getData();
-  constructor(private dataService: DataService) {}
+  public books: any = [];
+
+  constructor(private dataService: DataService) {
+    this.dataService.getData().subscribe((info) => {
+      this.books = info.books;
+    });
+  }
 
   ngOnInit(): void {}
 }

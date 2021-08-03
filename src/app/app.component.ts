@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Data } from './data';
+import { Output, Component } from '@angular/core';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',

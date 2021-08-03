@@ -14,10 +14,10 @@
     { "name": "Fantasy" }
   ],
   "authors": [
-    { "name": "William Shakespeare" },
-    { "name": "William Faulkner" },
-    { "name": "Henry James" },
-    { "name": "Jane Austen" },
-    { "name": "Charles Dickens" }
+    { "name": "William Shakespeare", "genre": "Action" },
+    { "name": "William Faulkner", "genre": "Mystery" },
+    { "name": "Henry James", "genre": "Comedy" },
+    { "name": "Jane Austen", "genre": "Drama" },
+    { "name": "Charles Dickens", "genre": "Fantasy" }
   ]
 }

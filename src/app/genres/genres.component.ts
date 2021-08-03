@@ -7,8 +7,12 @@ import { DataService } from '../data.service';
   styleUrls: ['./genres.component.scss'],
 })
 export class GenresComponent implements OnInit {
-  genres = this.dataService.getData();
-  constructor(private dataService: DataService) {}
+  public genres: any = [];
+  constructor(private dataService: DataService) {
+    this.dataService.getData().subscribe((info) => {
+      this.genres = info.genres;
+    });
+  }
 
   ngOnInit(): void {}
 }
