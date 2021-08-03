@@ -1,5 +1,5 @@
 export interface Data {
-  books: Array<Object>;
-  genres: Array<Object>;
-  authors: Array<Object>;
+  books: { name: String };
+  genres: { name: String };
+  authors: { name: String };
 }

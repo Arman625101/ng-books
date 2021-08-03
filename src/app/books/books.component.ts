@@ -7,7 +7,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  books = this.dataService.data.books;
+  books = this.dataService.getData();
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}

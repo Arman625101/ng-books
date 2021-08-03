@@ -7,8 +7,14 @@ import { DataService } from '../data.service';
   styleUrls: ['./authors.component.scss'],
 })
 export class AuthorsComponent implements OnInit {
-  authors = this.dataService.data.authors;
+  authors = [];
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataService.getData().subscribe((data) => {
+      const a = JSON.stringify(data.authors);
+      this.authors = JSON.parse(a);
+      console.log(this.authors);
+    });
+  }
 }

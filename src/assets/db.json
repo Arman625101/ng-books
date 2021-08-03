@@ -1,0 +1,23 @@
+{
+  "books": [
+    { "name": "In Search of Lost Time" },
+    { "name": "Ulysses" },
+    { "name": "Don Quixote" },
+    { "name": "The Great Gatsby" },
+    { "name": "War and Peace" }
+  ],
+  "genres": [
+    { "name": "Action" },
+    { "name": "Mystery" },
+    { "name": "Comedy" },
+    { "name": "Drama" },
+    { "name": "Fantasy" }
+  ],
+  "authors": [
+    { "name": "William Shakespeare" },
+    { "name": "William Faulkner" },
+    { "name": "Henry James" },
+    { "name": "Jane Austen" },
+    { "name": "Charles Dickens" }
+  ]
+}

@@ -7,10 +7,8 @@ import { DataService } from '../data.service';
   styleUrls: ['./genres.component.scss'],
 })
 export class GenresComponent implements OnInit {
-  genres = this.dataService.data.genres;
+  genres = this.dataService.getData();
   constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
-    console.log(this.dataService);
-  }
+  ngOnInit(): void {}
 }
