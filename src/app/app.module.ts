@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { BooksComponent } from './books/books.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { GenresComponent } from './genres/genres.component';
+import { ModalComponent } from './modal/modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,8 +16,14 @@ import { GenresComponent } from './genres/genres.component';
     BooksComponent,
     AuthorsComponent,
     GenresComponent,
+    ModalComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

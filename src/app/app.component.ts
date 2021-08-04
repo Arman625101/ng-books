@@ -1,4 +1,4 @@
-import { Output, Component } from '@angular/core';
+import { Output, Component, Input } from '@angular/core';
 import { DataService } from './data.service';
 
 @Component({
@@ -7,5 +7,13 @@ import { DataService } from './data.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'ng-books';
+  title: string = 'ng-books';
+  showModal: boolean = false;
+
+  openModal = () => {
+    this.showModal = true;
+  };
+  closeModal(value: boolean) {
+    this.showModal = value;
+  }
 }

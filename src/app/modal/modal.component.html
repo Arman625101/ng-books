@@ -1,0 +1,25 @@
+<div class="modal">
+  <div class="header">
+    <div id="mdiv" (click)="closeModal(false)">
+      <div class="mdiv">
+        <div class="md"></div>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <form [formGroup]="createForm" *ngIf="mode ? mode.includes('create') : false">
+      <label for="name">Name</label>
+      <input id="name" type="text" formControlName="name" />
+
+      <label for="author">Author</label>
+      <input id="author" type="text" formControlName="author" />
+    </form>
+    <form [formGroup]="editForm" *ngIf="mode ? mode.includes('edit') : false">
+        <label for="name">Name</label>
+        <input id="name" type="text" formControlName="name" />
+  
+        <label for="author">Author</label>
+        <input id="author" type="text" formControlName="author" />
+      </form>
+  </div>
+</div>

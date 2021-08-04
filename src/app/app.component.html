@@ -4,4 +4,12 @@
   <div><a routerLink="/books">Books</a></div>
 </div>
 
+<button (click)="openModal()">Add New</button>
+
 <router-outlet></router-outlet>
+
+<app-modal
+  *ngIf="showModal"
+  (closeModalEvent)="closeModal($event)"
+  mode="{create}"
+></app-modal>

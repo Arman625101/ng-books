@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Data } from '@angular/router';
 import { DataService } from '../data.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { DataService } from '../data.service';
 export class GenresComponent implements OnInit {
   public genres: any = [];
   constructor(private dataService: DataService) {
-    this.dataService.getData().subscribe((info) => {
+    this.dataService.getData().subscribe((info: Data) => {
       this.genres = info.genres;
     });
   }
