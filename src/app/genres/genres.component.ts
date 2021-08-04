@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Data } from '@angular/router';
 import { DataService } from '../data.service';
+import { SharedService } from '../shared-service';
 
 @Component({
   selector: 'app-genres',
@@ -9,9 +10,17 @@ import { DataService } from '../data.service';
 })
 export class GenresComponent implements OnInit {
   public genres: any = [];
-  constructor(private dataService: DataService) {
-    this.dataService.getData().subscribe((info: Data) => {
-      this.genres = info.genres;
+
+  openModal(value: string) {
+    this._sharedService.emitChange(value);
+  }
+
+  constructor(
+    private dataService: DataService,
+    private _sharedService: SharedService
+  ) {
+    this.dataService.getData('genres').subscribe((info: Data) => {
+      this.genres = info;
     });
   }
 

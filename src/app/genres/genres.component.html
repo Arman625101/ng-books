@@ -1,5 +1,7 @@
-<div>
+<div class="list_container">
   <ul>
-    <li *ngFor="let genre of genres">{{ genre.name }}</li>
+    <li *ngFor="let genre of genres">
+      {{ genre.name }} <button (click)="openModal('edit')">Edit</button>
+    </li>
   </ul>
 </div>

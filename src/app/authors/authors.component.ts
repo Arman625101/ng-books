@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { DataService } from '../data.service';
+import { SharedService } from '../shared-service';
 
 @Component({
   selector: 'app-authors',
@@ -9,9 +10,17 @@ import { DataService } from '../data.service';
 })
 export class AuthorsComponent implements OnInit {
   public authors: any = [];
-  constructor(private dataService: DataService) {
-    this.dataService.getData().subscribe((info: Data) => {
-      this.authors = info.authors;
+
+  openModal(value: string) {
+    this._sharedService.emitChange(value);
+  }
+
+  constructor(
+    private dataService: DataService,
+    private _sharedService: SharedService
+  ) {
+    this.dataService.getData('authors').subscribe((info: Data) => {
+      this.authors = info;
     });
   }
   ngOnInit(): void {}

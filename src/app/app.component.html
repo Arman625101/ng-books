@@ -1,15 +1,15 @@
 <div class="header">
-  <div><a routerLink="/genres">Genres</a></div>
-  <div><a routerLink="/authors">Authors</a></div>
-  <div><a routerLink="/books">Books</a></div>
+  <a routerLink="/genres" routerLinkActive="active">Genres</a>
+  <a routerLink="/authors" routerLinkActive="active">Authors</a>
+  <a routerLink="/books" routerLinkActive="active">Books</a>
 </div>
 
-<button (click)="openModal()">Add New</button>
+<button (click)="openModal('create')">Add New</button>
 
 <router-outlet></router-outlet>
 
 <app-modal
   *ngIf="showModal"
   (closeModalEvent)="closeModal($event)"
-  mode="{create}"
+  [mode]="mode"
 ></app-modal>

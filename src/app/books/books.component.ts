@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { DataService } from '../data.service';
+import { SharedService } from '../shared-service';
 
 @Component({
   selector: 'app-books',
@@ -10,9 +11,16 @@ import { DataService } from '../data.service';
 export class BooksComponent implements OnInit {
   public books: any = [];
 
-  constructor(private dataService: DataService) {
-    this.dataService.getData().subscribe((info: Data) => {
-      this.books = info.books;
+  openModal(value: string) {
+    this._sharedService.emitChange(value);
+  }
+
+  constructor(
+    private dataService: DataService,
+    private _sharedService: SharedService
+  ) {
+    this.dataService.getData('books').subscribe((info: Data) => {
+      this.books = info;
     });
   }
 

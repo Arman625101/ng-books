@@ -1,0 +1,63 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  a {
+    width: 100%;
+    padding: 12px 5px;
+    color: #1a1b1c;
+    background: #ecf0f1;
+    border-bottom: 2px solid #8e44ad;
+    font-size: 16px;
+    text-align: center;
+    transition: background 0.4s;
+    &:last-child {
+      border-right: 1px solid #000;
+    }
+    &.active {
+      background: #8e44ad;
+      color: #fff;
+      transition: background 0.4s;
+    }
+  }
+}
+
+router-outlet + ::ng-deep * {
+  & > .list_container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    ul {
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+        rgba(0, 0, 0, 0.22) 0px 15px 12px;
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 9px 6px;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.253);
+        &:last-child {
+          border: none;
+        }
+        button {
+          cursor: pointer;
+          padding: 0px 6px;
+          background: #ecf0f1;
+          border: none;
+          border-bottom: 2px solid #8e44ad;
+          transition: background 0.2s, color 0.2s;
+          &:hover {
+            background: #8e44ad;
+            color: #fff;
+            transition: background 0.2s, color 0.2s;
+          }
+        }
+      }
+    }
+  }
+}

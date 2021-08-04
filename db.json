@@ -1,19 +1,63 @@
 {
-  "posts": [
+  "books": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "name": "In Search of Lost Time"
+    },
+    {
+      "name": "Ulysses"
+    },
+    {
+      "name": "Don Quixote"
+    },
+    {
+      "name": "The Great Gatsby"
+    },
+    {
+      "name": "War and Peace"
     }
   ],
-  "comments": [
+  "genres": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Action"
+    },
+    {
+      "name": "Mystery"
+    },
+    {
+      "name": "Comedy"
+    },
+    {
+      "name": "Drama"
+    },
+    {
+      "name": "Fantasy"
+    },
+    {
+      "name": "Avwvbwvv",
+      "author": null,
+      "id": "91hk6x7bn"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "authors": [
+    {
+      "name": "William Shakespeare",
+      "genre": "Action"
+    },
+    {
+      "name": "William Faulkner",
+      "genre": "Mystery"
+    },
+    {
+      "name": "Henry James",
+      "genre": "Comedy"
+    },
+    {
+      "name": "Jane Austen",
+      "genre": "Drama"
+    },
+    {
+      "name": "Charles Dickens",
+      "genre": "Fantasy"
+    }
+  ]
 }

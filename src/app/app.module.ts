@@ -9,6 +9,8 @@ import { AuthorsComponent } from './authors/authors.component';
 import { GenresComponent } from './genres/genres.component';
 import { ModalComponent } from './modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from './shared-service';
+import { ForbiddenValidatorDirective } from './shared/forbidden-name.directive';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthorsComponent,
     GenresComponent,
     ModalComponent,
+    ForbiddenValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

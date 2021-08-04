@@ -7,19 +7,31 @@
     </div>
   </div>
   <div class="main">
-    <form [formGroup]="createForm" *ngIf="mode ? mode.includes('create') : false">
-      <label for="name">Name</label>
-      <input id="name" type="text" formControlName="name" />
+    <form
+      [formGroup]="createForm"
+      *ngIf="mode ? mode.includes('create') : false"
+      (ngSubmit)="onSubmit()"
+    >
+      <label for="create-name">Name</label>
+      <input id="create-name" type="text" formControlName="name" />
 
-      <label for="author">Author</label>
-      <input id="author" type="text" formControlName="author" />
+      <label for="create-author" *ngIf="mode ? mode.includes('Authors') : false"
+        >Author</label
+      >
+      <input
+        id="create-author"
+        *ngIf="mode ? mode.includes('Authors') : false"
+        type="text"
+        formControlName="author"
+      />
+      <button type="submit" [disabled]="!createForm.valid">Submit</button>
     </form>
     <form [formGroup]="editForm" *ngIf="mode ? mode.includes('edit') : false">
-        <label for="name">Name</label>
-        <input id="name" type="text" formControlName="name" />
-  
-        <label for="author">Author</label>
-        <input id="author" type="text" formControlName="author" />
-      </form>
+      <label for="name">Edit Name</label>
+      <input id="name" type="text" formControlName="name" />
+
+      <label for="author">Edit Author</label>
+      <input id="author" type="text" formControlName="author" />
+    </form>
   </div>
 </div>
