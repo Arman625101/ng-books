@@ -10,7 +10,7 @@
     <form
       [formGroup]="createForm"
       *ngIf="mode ? mode.includes('create') : false"
-      (ngSubmit)="onSubmit()"
+      (ngSubmit)="onSubmit('create')"
     >
       <label for="create-name">Name</label>
       <input id="create-name" type="text" formControlName="name" />
@@ -26,12 +26,34 @@
       />
       <button type="submit" [disabled]="!createForm.valid">Submit</button>
     </form>
-    <form [formGroup]="editForm" *ngIf="mode ? mode.includes('edit') : false">
+    <form
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit('edit')"
+      *ngIf="mode ? mode.includes('edit') : false"
+    >
       <label for="name">Edit Name</label>
       <input id="name" type="text" formControlName="name" />
 
-      <label for="author">Edit Author</label>
-      <input id="author" type="text" formControlName="author" />
+      <label for="author" *ngIf="mode ? mode.includes('Authors') : false"
+        >Edit Author</label
+      >
+      <input
+        id="author"
+        type="text"
+        formControlName="author"
+        *ngIf="mode ? mode.includes('Authors') : false"
+      />
+      <button type="submit" [disabled]="!editForm.valid">Submit</button>
     </form>
+    <div class="delete_holder" *ngIf="mode ? mode.includes('delete') : false">
+      <h1>Are you sure?</h1>
+      <p>
+        Do you really want to delete this record? This process cannot be undone.
+      </p>
+      <div>
+        <button class="cancel" (click)="closeModal(false)">Cancel</button>
+        <button class="delete" (click)="onSubmit('delete')">Delete</button>
+      </div>
+    </div>
   </div>
 </div>

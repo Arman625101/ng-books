@@ -61,7 +61,8 @@
           font-size: 14px;
         }
         input {
-          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+          box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+            rgb(209, 213, 219) 0px 0px 0px 1px inset;
           // border: 1px solid rgba(71, 71, 71, 0.795);
           border: none;
           margin-bottom: 10px;
@@ -70,6 +71,45 @@
           padding-right: 5px;
           outline: none;
           &:focus {
+          }
+        }
+      }
+      div.delete_holder {
+        text-align: center;
+        padding: 20px;
+        padding-top: 0;
+        h1 {
+          font-size: 25px;
+        }
+        p {
+          max-width: 280px;
+        }
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          button {
+            cursor: pointer;
+            margin: 10px 5px;
+            padding: 10px 15px;
+            border: none;
+            transition: background-color 0.2s, color 0.2s;
+            &.cancel {
+              border-bottom: 2px solid #a0a0a0;
+              &:hover {
+                background-color: #a0a0a0;
+                color: #fff;
+                transition: background-color 0.2s, color 0.2s;
+              }
+            }
+            &.delete {
+              border-bottom: 2px solid #ff0000;
+              &:hover {
+                background-color: #ff0000;
+                color: #fff;
+                transition: background-color 0.2s, color 0.2s;
+              }
+            }
           }
         }
       }

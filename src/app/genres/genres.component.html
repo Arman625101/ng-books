@@ -1,7 +1,16 @@
 <div class="list_container">
   <ul>
     <li *ngFor="let genre of genres">
-      {{ genre.name }} <button (click)="openModal('edit')">Edit</button>
+      {{ genre.name }}
+      <div>
+        <button (click)="openModal({ item: genre, mode: 'editing' })">Edit</button>
+        <button
+          class="delete"
+          (click)="openModal({ item: genre, mode: 'deleting' })"
+        >
+          Delete
+        </button>
+      </div>
     </li>
   </ul>
 </div>

@@ -11,7 +11,7 @@ import { SharedService } from '../shared-service';
 export class GenresComponent implements OnInit {
   public genres: any = [];
 
-  openModal(value: string) {
+  openModal(value: object) {
     this._sharedService.emitChange(value);
   }
 
@@ -24,5 +24,20 @@ export class GenresComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._sharedService.changeEmitted$.subscribe((info) => {
+      if (info.mode === 'create') {
+        this.genres = [...this.genres, info];
+      } else if (info.mode === 'delete') {
+        this.genres = this.genres.filter((obj: any) => {
+          return obj.id !== info.item.id;
+        });
+      } else if (info.mode === 'edit') {
+        var foundIndex = this.genres.findIndex(
+          (x: any) => x.id == info.item.id
+        );
+        this.genres[foundIndex] = info.item;
+      }
+    });
+  }
 }

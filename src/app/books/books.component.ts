@@ -11,7 +11,7 @@ import { SharedService } from '../shared-service';
 export class BooksComponent implements OnInit {
   public books: any = [];
 
-  openModal(value: string) {
+  openModal(value: object) {
     this._sharedService.emitChange(value);
   }
 
@@ -24,5 +24,18 @@ export class BooksComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._sharedService.changeEmitted$.subscribe((info) => {
+      if (info.mode === 'create') {
+        this.books = [...this.books, info];
+      } else if (info.mode === 'delete') {
+        this.books = this.books.filter((obj: any) => {
+          return obj.id !== info.item.id;
+        });
+      } else if (info.mode === 'edit') {
+        var foundIndex = this.books.findIndex((x: any) => x.id == info.item.id);
+        this.books[foundIndex] = info.item;
+      }
+    });
+  }
 }

@@ -11,18 +11,23 @@ export class AppComponent {
   title: string = 'ng-books';
   showModal: boolean = false;
   mode: string = '';
+  item: any = {};
 
-  openModal(value: any) {
+  openModal(item: any) {
     this.showModal = true;
-    this.mode = value;
+    this.mode = item.mode;
   }
   closeModal(value: boolean) {
     this.showModal = value;
   }
   constructor(private _sharedService: SharedService) {
     _sharedService.changeEmitted$.subscribe((value) => {
-      this.mode = value;
-      value === 'edit' ? this.openModal(value) : null;
+      this.item = value;
+      this.mode = value.mode;
+      console.log(value);
+      this.mode === 'editing' || this.mode === 'deleting'
+        ? this.openModal(value)
+        : null;
     });
   }
 }

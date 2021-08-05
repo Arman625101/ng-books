@@ -21,10 +21,31 @@
   }
 }
 
+.btn_holder {
+  display: flex;
+  justify-content: center;
+  margin-top: 65px;
+  .new_btn {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 20px;
+    cursor: pointer;
+    border: 2px solid #8e44ad;
+    background-color: #8d44ad2f;
+    transition: background-color 0.2s, color 0.2s;
+    &:hover {
+      background-color: #8e44ad;
+      color: #fff;
+      transition: background-color 0.2s, color 0.2s;
+    }
+  }
+}
+
 router-outlet + ::ng-deep * {
   & > .list_container {
     max-width: 400px;
     margin: 50px auto;
+    margin-top: 0;
     padding: 20px;
     ul {
       box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -55,6 +76,14 @@ router-outlet + ::ng-deep * {
             background: #8e44ad;
             color: #fff;
             transition: background 0.2s, color 0.2s;
+          }
+          &.delete {
+            border-bottom: 2px solid #ff0000;
+            &:hover {
+              background: #ff0000;
+              color: #fff;
+              transition: background 0.2s, color 0.2s;
+            }
           }
         }
       }
