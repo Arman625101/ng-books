@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    min-width: 320px;
     background: #fff;
     color: #000;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -63,14 +64,76 @@
         input {
           box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
             rgb(209, 213, 219) 0px 0px 0px 1px inset;
-          // border: 1px solid rgba(71, 71, 71, 0.795);
           border: none;
           margin-bottom: 10px;
           height: 25px;
           padding-left: 8px;
           padding-right: 5px;
           outline: none;
-          &:focus {
+        }
+        .custom_select {
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-around;
+          grid-template-areas: "select";
+          border: none;
+          box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 1px,
+            #d1d5db 0px 0px 0px 1px inset;
+          padding: 5px 8px;
+          font-size: 14px;
+          cursor: pointer;
+          line-height: 1.1;
+          background-color: #fff;
+          background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+          select {
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            padding: 0 1em 0 0;
+            margin: 0;
+            width: 100%;
+            font-family: inherit;
+            font-size: inherit;
+            cursor: inherit;
+            line-height: inherit;
+            grid-template-areas: "select";
+            option {
+              border: none;
+              padding: 2px 5px;
+            }
+          }
+          &::after {
+            content: "";
+            width: 0.8em;
+            height: 0.5em;
+            background-color: #777;
+            clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+            grid-area: select;
+            justify-self: end;
+          }
+        }
+        button.submit {
+          cursor: pointer;
+          padding: 7px 5px;
+          background: #ecf0f1;
+          border: none;
+          border-bottom: 2px solid #8e44ad;
+          transition: background 0.2s, color 0.2s;
+          &:hover {
+            color: #fff;
+            background-color: #8e44ad;
+            transition: background 0.2s, color 0.2s;
+          }
+          &:disabled {
+            border: none;
+            &:hover {
+              color: #1010104d;
+              background-color: #ecf0f1;
+            }
           }
         }
       }

@@ -10,7 +10,6 @@ import { GenresComponent } from './genres/genres.component';
 import { ModalComponent } from './modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './shared-service';
-import { ForbiddenValidatorDirective } from './shared/forbidden-name.directive';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { ForbiddenValidatorDirective } from './shared/forbidden-name.directive';
     AuthorsComponent,
     GenresComponent,
     ModalComponent,
-    ForbiddenValidatorDirective,
   ],
   imports: [
     BrowserModule,

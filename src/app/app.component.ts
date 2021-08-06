@@ -1,5 +1,4 @@
-import { Output, Component, Input } from '@angular/core';
-import { DataService } from './data.service';
+import { Component } from '@angular/core';
 import { SharedService } from './shared-service';
 
 @Component({
@@ -24,7 +23,6 @@ export class AppComponent {
     _sharedService.changeEmitted$.subscribe((value) => {
       this.item = value;
       this.mode = value.mode;
-      console.log(value);
       this.mode === 'editing' || this.mode === 'deleting'
         ? this.openModal(value)
         : null;

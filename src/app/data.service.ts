@@ -22,6 +22,14 @@ export class DataService {
   }
   create(data: any, mode: string): Observable<any> {
     data.id = Math.random().toString(36).substr(2, 9);
+    if (data.selectGenre) {
+      data.genre = data.selectGenre.name;
+      delete data.selectGenre;
+    } 
+    if (data.selectAuthor) {
+      data.author = data.selectAuthor.name;
+      delete data.selectAuthor;
+    }
     const type = mode.includes('Genre')
       ? 'genres'
       : mode.includes('Author')
@@ -41,7 +49,7 @@ export class DataService {
       : mode.includes('Book')
       ? 'books'
       : '';
-    console.log(data.name);
+    
     return this.http.put(`${this.baseURL}${type}/${data.id}`, data);
   }
   delete(data: any, mode: string): Observable<any> {
@@ -58,10 +66,8 @@ export class DataService {
   errorHandler(error: any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // Get client-side error
       errorMessage = error.error.message;
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);

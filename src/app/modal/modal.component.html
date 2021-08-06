@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal animate__animated animate__fadeInDown">
   <div class="header">
     <div id="mdiv" (click)="closeModal(false)">
       <div class="mdiv">
@@ -14,17 +14,30 @@
     >
       <label for="create-name">Name</label>
       <input id="create-name" type="text" formControlName="name" />
-
-      <label for="create-author" *ngIf="mode ? mode.includes('Authors') : false"
-        >Author</label
+      <div
+        class="custom_select"
+        *ngIf="
+          mode ? mode.includes('Authors') || mode.includes('Books') : false
+        "
       >
-      <input
-        id="create-author"
-        *ngIf="mode ? mode.includes('Authors') : false"
-        type="text"
-        formControlName="author"
-      />
-      <button type="submit" [disabled]="!createForm.valid">Submit</button>
+        <select (change)="changeGenre($event)" formControlName="selectGenre">
+          <option value="" disabled>Choose Genre</option>
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="custom_select" *ngIf="mode ? mode.includes('Books') : false">
+        <select formControlName="selectAuthor">
+          <option value="" disabled>Choose Author</option>
+          <option *ngFor="let author of authors" [ngValue]="author">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" [disabled]="!createForm.valid" class="submit">
+        Submit
+      </button>
     </form>
     <form
       [formGroup]="editForm"
@@ -33,17 +46,34 @@
     >
       <label for="name">Edit Name</label>
       <input id="name" type="text" formControlName="name" />
-
-      <label for="author" *ngIf="mode ? mode.includes('Authors') : false"
-        >Edit Author</label
+      <div
+        class="custom_select"
+        *ngIf="
+          mode ? mode.includes('Authors') || mode.includes('Books') : false
+        "
       >
-      <input
-        id="author"
-        type="text"
-        formControlName="author"
-        *ngIf="mode ? mode.includes('Authors') : false"
-      />
-      <button type="submit" [disabled]="!editForm.valid">Submit</button>
+        <select (change)="changeGenre($event)" formControlName="selectGenre">
+          <option value="" disabled>
+            {{ this.item.item.genre }}
+          </option>
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="custom_select" *ngIf="mode ? mode.includes('Books') : false">
+        <select formControlName="selectAuthor">
+          <option value="" disabled>
+            {{ this.item.item.author }}
+          </option>
+          <option *ngFor="let author of authors" [ngValue]="author">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" [disabled]="!editForm.valid" class="submit">
+        Submit
+      </button>
     </form>
     <div class="delete_holder" *ngIf="mode ? mode.includes('delete') : false">
       <h1>Are you sure?</h1>

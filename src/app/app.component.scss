@@ -57,6 +57,7 @@ router-outlet + ::ng-deep * {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         font-size: 15px;
         font-weight: 600;
         padding: 9px 6px;
@@ -67,7 +68,7 @@ router-outlet + ::ng-deep * {
         }
         button {
           cursor: pointer;
-          padding: 0px 6px;
+          padding: 5px 6px;
           background: #ecf0f1;
           border: none;
           border-bottom: 2px solid #8e44ad;

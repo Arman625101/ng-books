@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
-import { forbiddenNameValidator } from '../shared/forbidden-name.directive';
 import { SharedService } from '../shared-service';
 
 @Component({
@@ -14,8 +13,9 @@ export class ModalComponent implements OnInit {
   @Input() mode: string = '';
   @Input() item: any = {};
   @Output() closeModalEvent = new EventEmitter<boolean>();
-  private regex: RegExp = /^[A-Z].*$/;
   public editForm: any = {};
+  public genres: Array<any> = [];
+  public authors: Array<any> = [];
 
   closeModal(value: boolean) {
     this.closeModalEvent.emit(value);
@@ -31,10 +31,14 @@ export class ModalComponent implements OnInit {
           this.closeModal(false);
         });
     } else if (type === 'edit') {
-      console.log('submit', this.item);
       this.dataService
         .update(
-          { name: this.editForm.value.name, id: this.item.item.id },
+          {
+            name: this.editForm.value.name,
+            id: this.item.item.id,
+            genre: this.editForm.value.selectGenre.name,
+            author: this.editForm.value.selectAuthor.name,
+          },
           this.mode
         )
         .subscribe((info) => {
@@ -53,12 +57,38 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  changeGenre(e: any) {
+    if (this.route.url === '/books') {
+      this.dataService.getData('authors').subscribe((info) => {
+        this.authors = info;
+        if (this.mode.includes('edit')) {
+          this.authors = info.filter((obj: any) => {
+            return obj.genre === this.editForm.value.selectGenre.name;
+          });
+        } else if (this.mode.includes('create')) {
+          this.authors = info.filter((obj: any) => {
+            return obj.genre === this.createForm.value.selectGenre.name;
+          });
+        }
+      });
+    }
+  }
+
   createForm = new FormGroup({
     name: new FormControl('', [
       Validators.required,
       Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$'),
     ]),
-    author: new FormControl(),
+    selectGenre: new FormControl('', [
+      this.route.url === '/authors'
+        ? Validators.required
+        : Validators.nullValidator,
+    ]),
+    selectAuthor: new FormControl('', [
+      this.route.url === '/books'
+        ? Validators.required
+        : Validators.nullValidator,
+    ]),
   });
 
   constructor(
@@ -71,8 +101,23 @@ export class ModalComponent implements OnInit {
     if (this.mode === 'editing') {
       this.editForm = new FormGroup({
         name: new FormControl(this.item.item.name),
-        author: new FormControl(''),
+        selectGenre: new FormControl('', [
+          this.route.url === '/authors'
+            ? Validators.required
+            : Validators.nullValidator,
+        ]),
+        selectAuthor: new FormControl('', [
+          this.route.url === '/books'
+            ? Validators.required
+            : Validators.nullValidator,
+        ]),
       });
+      if (this.route.url === '/authors' || this.route.url === '/books') {
+        this.dataService.getData('genres').subscribe((info) => {
+          this.genres = info;
+          this.changeGenre('');
+        });
+      }
       this.mode =
         this.route.url === '/genres'
           ? 'editGenre'
@@ -82,6 +127,11 @@ export class ModalComponent implements OnInit {
           ? 'editBooks'
           : 'editGenre';
     } else if (this.mode === 'create') {
+      if (this.route.url === '/authors' || this.route.url === '/books') {
+        this.dataService.getData('genres').subscribe((info) => {
+          this.genres = info;
+        });
+      }
       this.mode =
         this.route.url === '/genres'
           ? 'createGenre'
