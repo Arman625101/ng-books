@@ -1,1 +1,18 @@
-<p>authors works!</p>
+<div class="list_container">
+  <ul>
+    <li *ngFor="let author of authors">
+      {{ author.name }}
+      <div>
+        <button (click)="openModal({ item: author, mode: 'editing' })">
+          Edit
+        </button>
+        <button
+          class="delete"
+          (click)="openModal({ item: author, mode: 'deleting' })"
+        >
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>

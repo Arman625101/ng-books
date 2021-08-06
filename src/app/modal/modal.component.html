@@ -1,0 +1,89 @@
+<div class="modal animate__animated animate__fadeInDown">
+  <div class="header">
+    <div id="mdiv" (click)="closeModal(false)">
+      <div class="mdiv">
+        <div class="md"></div>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <form
+      [formGroup]="createForm"
+      *ngIf="mode ? mode.includes('create') : false"
+      (ngSubmit)="onSubmit('create')"
+    >
+      <label for="create-name">Name</label>
+      <input id="create-name" type="text" formControlName="name" />
+      <div
+        class="custom_select"
+        *ngIf="
+          mode ? mode.includes('Authors') || mode.includes('Books') : false
+        "
+      >
+        <select (change)="changeGenre($event)" formControlName="selectGenre">
+          <option value="" disabled>Choose Genre</option>
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="custom_select" *ngIf="mode ? mode.includes('Books') : false">
+        <select formControlName="selectAuthor">
+          <option value="" disabled>Choose Author</option>
+          <option *ngFor="let author of authors" [ngValue]="author">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" [disabled]="!createForm.valid" class="submit">
+        Submit
+      </button>
+    </form>
+    <form
+      [formGroup]="editForm"
+      (ngSubmit)="onSubmit('edit')"
+      *ngIf="mode ? mode.includes('edit') : false"
+    >
+      <label for="name">Edit Name</label>
+      <input id="name" type="text" formControlName="name" />
+      <div
+        class="custom_select"
+        *ngIf="
+          mode ? mode.includes('Authors') || mode.includes('Books') : false
+        "
+      >
+        <select (change)="changeGenre($event)" formControlName="selectGenre">
+          <option value="" disabled>
+            {{ this.item.item.genre }}
+          </option>
+          <option *ngFor="let genre of genres" [ngValue]="genre">
+            {{ genre.name }}
+          </option>
+        </select>
+      </div>
+      <div class="custom_select" *ngIf="mode ? mode.includes('Books') : false">
+        <select formControlName="selectAuthor">
+          <option value="" disabled>
+            {{ this.item.item.author }}
+          </option>
+          <option *ngFor="let author of authors" [ngValue]="author">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" [disabled]="!editForm.valid" class="submit">
+        Submit
+      </button>
+    </form>
+    <div class="delete_holder" *ngIf="mode ? mode.includes('delete') : false">
+      <h1>Are you sure?</h1>
+      <p>
+        Do you really want to delete this record? This process cannot be undone.
+      </p>
+      <div>
+        <button class="cancel" (click)="closeModal(false)">Cancel</button>
+        <button class="delete" (click)="onSubmit('delete')">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

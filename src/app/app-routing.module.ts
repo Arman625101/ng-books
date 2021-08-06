@@ -5,6 +5,7 @@ import { BooksComponent } from './books/books.component';
 import { GenresComponent } from './genres/genres.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/genres', pathMatch: 'full' },
   { path: 'books', component: BooksComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'genres', component: GenresComponent },
