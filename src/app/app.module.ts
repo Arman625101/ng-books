@@ -9,7 +9,7 @@ import { AuthorsComponent } from './authors/authors.component';
 import { GenresComponent } from './genres/genres.component';
 import { ModalComponent } from './modal/modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedService } from './shared-service';
+import { SharedService } from './service/shared-service';
 
 @NgModule({
   declarations: [

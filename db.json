@@ -17,12 +17,6 @@
       "id": "p4r0mwhst",
       "genre": "Mystery",
       "author": "Ernest Hemingway"
-    },
-    {
-      "name": "Karmir glxark",
-      "id": "ojr97xd3q",
-      "genre": "Fantasy",
-      "author": "Toni Morrison"
     }
   ],
   "genres": [
@@ -47,8 +41,22 @@
       "id": "3zjb90n6l"
     },
     {
-      "name": "Horror",
-      "id": "d99bef6lu"
+      "name": "Afqgqg",
+      "selectGenre": "",
+      "selectAuthor": "",
+      "id": "vdlyhwvyb"
+    },
+    {
+      "name": "Aaaa",
+      "selectGenre": "",
+      "selectAuthor": "",
+      "id": "bicq3b4yw"
+    },
+    {
+      "name": "Zfegeg",
+      "selectGenre": "",
+      "selectAuthor": "",
+      "id": "j5fp1i39m"
     }
   ],
   "authors": [

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
+import { Author, Genre, Book } from '../interface/data';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { Observable, throwError } from 'rxjs';
 export class DataService {
   private baseURL = 'http://localhost:3000/';
 
-  httpOptions = {
+  private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
@@ -17,15 +18,22 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  getData(api: string): Observable<any> {
-    return this.http.get(`${this.baseURL + api}`);
+  getGenres(): Observable<Genre[]> {
+    return this.http.get<Genre[]>(`${this.baseURL}genres`);
   }
+  getAuthors(): Observable<Author[]> {
+    return this.http.get<Author[]>(`${this.baseURL}authors`);
+  }
+  getBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.baseURL}books`);
+  }
+  /******************************************* */
   create(data: any, mode: string): Observable<any> {
     data.id = Math.random().toString(36).substr(2, 9);
     if (data.selectGenre) {
       data.genre = data.selectGenre.name;
       delete data.selectGenre;
-    } 
+    }
     if (data.selectAuthor) {
       data.author = data.selectAuthor.name;
       delete data.selectAuthor;
@@ -49,7 +57,7 @@ export class DataService {
       : mode.includes('Book')
       ? 'books'
       : '';
-    
+
     return this.http.put(`${this.baseURL}${type}/${data.id}`, data);
   }
   delete(data: any, mode: string): Observable<any> {

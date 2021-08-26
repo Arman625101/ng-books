@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Data } from '@angular/router';
-import { DataService } from '../data.service';
-import { SharedService } from '../shared-service';
+import { Book, ModalState } from '../interface/data';
+import { DataService } from '../service/data.service';
+import { SharedService } from '../service/shared-service';
 
 @Component({
   selector: 'app-books',
@@ -9,31 +9,33 @@ import { SharedService } from '../shared-service';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  public books: any = [];
+  public books: Book[] = [];
 
-  openModal(value: object) {
+  openModal(value: ModalState<Book>) {
     this._sharedService.emitChange(value);
   }
 
   constructor(
-    private dataService: DataService,
+    private api: DataService,
     private _sharedService: SharedService
-  ) {
-    this.dataService.getData('books').subscribe((info: Data) => {
-      this.books = info;
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
-    this._sharedService.changeEmitted$.subscribe((info) => {
+    this.api.getBooks().subscribe((info) => {
+      this.books = info;
+    });
+
+    this._sharedService.changeEmitted$.subscribe((info: ModalState<Book>) => {
       if (info.mode === 'create') {
-        this.books = [...this.books, info];
+        this.books = [...this.books, info.item];
       } else if (info.mode === 'delete') {
-        this.books = this.books.filter((obj: any) => {
+        this.books = this.books.filter((obj: Book) => {
           return obj.id !== info.item.id;
         });
       } else if (info.mode === 'edit') {
-        var foundIndex = this.books.findIndex((x: any) => x.id == info.item.id);
+        var foundIndex = this.books.findIndex(
+          (x: Book) => x.id == info.item.id
+        );
         this.books[foundIndex] = info.item;
       }
     });

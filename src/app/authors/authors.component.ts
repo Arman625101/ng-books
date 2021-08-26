@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
-import { DataService } from '../data.service';
-import { SharedService } from '../shared-service';
+import { Author, ModalState } from '../interface/data';
+import { DataService } from '../service/data.service';
+import { SharedService } from '../service/shared-service';
 
 @Component({
   selector: 'app-authors',
@@ -9,32 +10,29 @@ import { SharedService } from '../shared-service';
   styleUrls: ['./authors.component.scss'],
 })
 export class AuthorsComponent implements OnInit {
-  public authors: any = [];
+  public authors: Author[] = [];
 
-  openModal(value: object) {
+  openModal(value: ModalState<Author>) {
     this._sharedService.emitChange(value);
   }
 
-  constructor(
-    private dataService: DataService,
-    private _sharedService: SharedService
-  ) {
-    this.dataService.getData('authors').subscribe((info: Data) => {
+  constructor(private api: DataService, private _sharedService: SharedService) {
+    this.api.getAuthors().subscribe((info) => {
       this.authors = info;
     });
   }
-  
+
   ngOnInit(): void {
-    this._sharedService.changeEmitted$.subscribe((info) => {
+    this._sharedService.changeEmitted$.subscribe((info: ModalState<Author>) => {
       if (info.mode === 'create') {
-        this.authors = [...this.authors, info];
+        this.authors = [...this.authors, info.item];
       } else if (info.mode === 'delete') {
-        this.authors = this.authors.filter((obj: any) => {
+        this.authors = this.authors.filter((obj: Author) => {
           return obj.id !== info.item.id;
         });
       } else if (info.mode === 'edit') {
         var foundIndex = this.authors.findIndex(
-          (x: any) => x.id == info.item.id
+          (x: Author) => x.id == info.item.id
         );
         this.authors[foundIndex] = info.item;
       }

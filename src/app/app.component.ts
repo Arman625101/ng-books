@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { SharedService } from './shared-service';
+import { Component, OnInit } from '@angular/core';
+import { SharedService } from './service/shared-service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title: string = 'ng-books';
   showModal: boolean = false;
   mode: string = '';
@@ -19,8 +19,10 @@ export class AppComponent {
   closeModal(value: boolean) {
     this.showModal = value;
   }
-  constructor(private _sharedService: SharedService) {
-    _sharedService.changeEmitted$.subscribe((value) => {
+  constructor(private _sharedService: SharedService) {}
+
+  ngOnInit(): void {
+    this._sharedService.changeEmitted$.subscribe((value) => {
       this.item = value;
       this.mode = value.mode;
       this.mode === 'editing' || this.mode === 'deleting'

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../data.service';
+import { DataService } from '../service/data.service';
 import { Router } from '@angular/router';
-import { SharedService } from '../shared-service';
+import { SharedService } from '../service/shared-service';
+import { Genre, Author } from '../interface/data';
 
 @Component({
   selector: 'app-modal',
@@ -11,23 +12,26 @@ import { SharedService } from '../shared-service';
 })
 export class ModalComponent implements OnInit {
   @Input() mode: string = '';
-  @Input() item: any = {};
+  @Input() item: any;
   @Output() closeModalEvent = new EventEmitter<boolean>();
   public editForm: any = {};
-  public genres: Array<any> = [];
-  public authors: Array<any> = [];
+  public genres: Genre[] = [];
+  public authors: Author[] = [];
 
   closeModal(value: boolean) {
     this.closeModalEvent.emit(value);
   }
 
-  onSubmit(type: String) {
+  onSubmit(type: string) {
     if (type === 'create') {
       this.dataService
         .create(this.createForm.value, this.mode)
         .subscribe((info) => {
-          info.mode = type;
-          this._sharedService.emitChange(info);
+          const newInfo = {
+            item: info,
+            mode: type,
+          };
+          this._sharedService.emitChange(newInfo);
           this.closeModal(false);
         });
     } else if (type === 'edit') {
@@ -59,14 +63,14 @@ export class ModalComponent implements OnInit {
 
   changeGenre(e: any) {
     if (this.route.url === '/books') {
-      this.dataService.getData('authors').subscribe((info) => {
+      this.dataService.getAuthors().subscribe((info) => {
         this.authors = info;
         if (this.mode.includes('edit')) {
-          this.authors = info.filter((obj: any) => {
+          this.authors = info.filter((obj: Author) => {
             return obj.genre === this.editForm.value.selectGenre.name;
           });
         } else if (this.mode.includes('create')) {
-          this.authors = info.filter((obj: any) => {
+          this.authors = info.filter((obj: Author) => {
             return obj.genre === this.createForm.value.selectGenre.name;
           });
         }
@@ -113,7 +117,7 @@ export class ModalComponent implements OnInit {
         ]),
       });
       if (this.route.url === '/authors' || this.route.url === '/books') {
-        this.dataService.getData('genres').subscribe((info) => {
+        this.dataService.getGenres().subscribe((info) => {
           this.genres = info;
           this.changeGenre('');
         });
@@ -128,7 +132,7 @@ export class ModalComponent implements OnInit {
           : 'editGenre';
     } else if (this.mode === 'create') {
       if (this.route.url === '/authors' || this.route.url === '/books') {
-        this.dataService.getData('genres').subscribe((info) => {
+        this.dataService.getGenres().subscribe((info) => {
           this.genres = info;
         });
       }
