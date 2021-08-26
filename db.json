@@ -17,6 +17,12 @@
       "id": "p4r0mwhst",
       "genre": "Mystery",
       "author": "Ernest Hemingway"
+    },
+    {
+      "name": "Karmir glxark",
+      "id": "ojr97xd3q",
+      "genre": "Fantasy",
+      "author": "Toni Morrison"
     }
   ],
   "genres": [
@@ -39,6 +45,10 @@
     {
       "name": "Contemporary",
       "id": "3zjb90n6l"
+    },
+    {
+      "name": "Horror",
+      "id": "d99bef6lu"
     }
   ],
   "authors": [
@@ -46,22 +56,6 @@
       "name": "Ernest Hemingway",
       "id": "gyo2g9ugq",
       "genre": "Mystery"
-    },
-    {
-      "name": "Leo Tolstoy",
-      "id": "ytaqivwrf",
-      "genre": "Contemporary"
-    },
-    {
-      "name": "Toni Morrison",
-      "id": "iozoz1o4z",
-      "genre": "Fantasy"
-    },
-    {
-      "name": "Carlos Ruiz Zafon",
-      "selectAuthor": "",
-      "id": "ct4vg7h46",
-      "genre": "Romance"
     }
   ]
 }
