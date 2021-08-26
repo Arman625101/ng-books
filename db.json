@@ -1,0 +1,67 @@
+{
+  "books": [
+    {
+      "name": "Islands In The Stream",
+      "id": "me4wnb5rx",
+      "genre": "Mystery",
+      "author": "Ernest Hemingway"
+    },
+    {
+      "name": "Labyrinths",
+      "id": "r3qhlln7n",
+      "genre": "Thriller",
+      "author": "Borges J.L"
+    },
+    {
+      "name": "Catch",
+      "id": "p4r0mwhst",
+      "genre": "Mystery",
+      "author": "Ernest Hemingway"
+    }
+  ],
+  "genres": [
+    {
+      "name": "Mystery",
+      "id": "95gd74"
+    },
+    {
+      "name": "Thriller",
+      "id": "jktd5"
+    },
+    {
+      "name": "Romance",
+      "id": "9fieyg2nk"
+    },
+    {
+      "name": "Fantasy",
+      "id": "uv2i19q2j"
+    },
+    {
+      "name": "Contemporary",
+      "id": "3zjb90n6l"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Ernest Hemingway",
+      "id": "gyo2g9ugq",
+      "genre": "Mystery"
+    },
+    {
+      "name": "Leo Tolstoy",
+      "id": "ytaqivwrf",
+      "genre": "Contemporary"
+    },
+    {
+      "name": "Toni Morrison",
+      "id": "iozoz1o4z",
+      "genre": "Fantasy"
+    },
+    {
+      "name": "Carlos Ruiz Zafon",
+      "selectAuthor": "",
+      "id": "ct4vg7h46",
+      "genre": "Romance"
+    }
+  ]
+}
