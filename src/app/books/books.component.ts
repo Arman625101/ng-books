@@ -26,6 +26,7 @@ export class BooksComponent implements OnInit {
     });
 
     this._sharedService.changeEmitted$.subscribe((info: ModalState<Book>) => {
+      console.log(info);
       if (info.mode === 'create') {
         this.books = [...this.books, info.item];
       } else if (info.mode === 'delete') {

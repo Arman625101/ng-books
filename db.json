@@ -17,6 +17,18 @@
       "id": "p4r0mwhst",
       "genre": "Mystery",
       "author": "Ernest Hemingway"
+    },
+    {
+      "name": "Azvvev",
+      "id": "emjx6rdfo",
+      "genre": "Mystery",
+      "author": "Ernest Hemingway"
+    },
+    {
+      "name": "Areteg",
+      "id": "48fkfi2yh",
+      "genre": "Mystery",
+      "author": "Ernest Hemingway"
     }
   ],
   "genres": [
@@ -41,28 +53,23 @@
       "id": "3zjb90n6l"
     },
     {
-      "name": "Afqgqg",
-      "selectGenre": "",
-      "selectAuthor": "",
-      "id": "vdlyhwvyb"
+      "name": "Qrgegeg",
+      "id": "bsfd1j9a2"
     },
     {
-      "name": "Aaaa",
-      "selectGenre": "",
-      "selectAuthor": "",
-      "id": "bicq3b4yw"
-    },
-    {
-      "name": "Zfegeg",
-      "selectGenre": "",
-      "selectAuthor": "",
-      "id": "j5fp1i39m"
+      "name": "Zwfewfefqfq",
+      "id": "7jsmxugs2"
     }
   ],
   "authors": [
     {
-      "name": "Ernest Hemingway",
+      "name": "Ernest Hemingwayy",
       "id": "gyo2g9ugq",
+      "genre": "Thriller"
+    },
+    {
+      "name": "Atggrh",
+      "id": "2rocoblsd",
       "genre": "Mystery"
     }
   ]

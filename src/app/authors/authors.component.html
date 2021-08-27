@@ -3,12 +3,12 @@
     <li *ngFor="let author of authors">
       {{ author.name }}
       <div>
-        <button (click)="openModal({ item: author, mode: 'editing' })">
+        <button (click)="openModal({ item: author, mode: 'edit' })">
           Edit
         </button>
         <button
           class="delete"
-          (click)="openModal({ item: author, mode: 'deleting' })"
+          (click)="openModal({ item: author, mode: 'delete' })"
         >
           Delete
         </button>

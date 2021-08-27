@@ -20,3 +20,9 @@ export interface ModalState<Type> {
   item: Type;
   mode: string;
 }
+
+export interface FormCreate {
+  name: string;
+  selectGenre?: string;
+  selectAuthor?: string;
+}

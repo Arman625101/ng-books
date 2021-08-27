@@ -24,6 +24,7 @@ export class AuthorsComponent implements OnInit {
 
   ngOnInit(): void {
     this._sharedService.changeEmitted$.subscribe((info: ModalState<Author>) => {
+      console.log(info.mode);
       if (info.mode === 'create') {
         this.authors = [...this.authors, info.item];
       } else if (info.mode === 'delete') {

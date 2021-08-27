@@ -45,6 +45,7 @@ export class DataService {
       : mode.includes('Book')
       ? 'books'
       : '';
+    console.log(data);
     return this.http
       .post(`${this.baseURL + type}`, JSON.stringify(data), this.httpOptions)
       .pipe(catchError(this.errorHandler));

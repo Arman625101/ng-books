@@ -3,10 +3,10 @@
     <li *ngFor="let genre of genres">
       {{ genre.name }}
       <div>
-        <button (click)="openModal({ item: genre, mode: 'editing' })">Edit</button>
+        <button (click)="openModal({ item: genre, mode: 'edit' })">Edit</button>
         <button
           class="delete"
-          (click)="openModal({ item: genre, mode: 'deleting' })"
+          (click)="openModal({ item: genre, mode: 'delete' })"
         >
           Delete
         </button>

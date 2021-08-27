@@ -14,20 +14,15 @@
     >
       <label for="create-name">Name</label>
       <input id="create-name" type="text" formControlName="name" />
-      <div
-        class="custom_select"
-        *ngIf="
-          mode ? mode.includes('Authors') || mode.includes('Books') : false
-        "
-      >
-        <select (change)="changeGenre($event)" formControlName="selectGenre">
+      <div class="custom_select" *ngIf="path !== '/genres'">
+        <select (change)="changeGenre()" formControlName="selectGenre">
           <option value="" disabled>Choose Genre</option>
           <option *ngFor="let genre of genres" [ngValue]="genre">
             {{ genre.name }}
           </option>
         </select>
       </div>
-      <div class="custom_select" *ngIf="mode ? mode.includes('Books') : false">
+      <div class="custom_select" *ngIf="path === '/books'">
         <select formControlName="selectAuthor">
           <option value="" disabled>Choose Author</option>
           <option *ngFor="let author of authors" [ngValue]="author">
@@ -46,13 +41,8 @@
     >
       <label for="name">Edit Name</label>
       <input id="name" type="text" formControlName="name" />
-      <div
-        class="custom_select"
-        *ngIf="
-          mode ? mode.includes('Authors') || mode.includes('Books') : false
-        "
-      >
-        <select (change)="changeGenre($event)" formControlName="selectGenre">
+      <div class="custom_select" *ngIf="mode ? !mode.includes('Genre') : false">
+        <select (change)="changeGenre()" formControlName="selectGenre">
           <option value="" disabled>
             {{ this.item.item.genre }}
           </option>

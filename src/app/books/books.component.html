@@ -3,10 +3,10 @@
     <li *ngFor="let book of books">
       {{ book.name }}
       <div>
-        <button (click)="openModal({ item: book, mode: 'editing' })">Edit</button>
+        <button (click)="openModal({ item: book, mode: 'edit' })">Edit</button>
         <button
           class="delete"
-          (click)="openModal({ item: book, mode: 'deleting' })"
+          (click)="openModal({ item: book, mode: 'delete' })"
         >
           Delete
         </button>
